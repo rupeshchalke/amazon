@@ -1,4 +1,4 @@
-import Logo from "../assets/images/cook.jpg"
+import Logo from "../assets/images/cook.png"
 
 const Header = () =>{
     return(

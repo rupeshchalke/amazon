@@ -1,6 +1,6 @@
 import logo from './logo.svg';
-import './App.css';
-import Logo from "./assets/images/cook.jpg"
+import "./App.css";
+// import logo from "./assets/images/cook.png"
 import Header from "./components/Header";
 import Body from "./components/Body";
 import Fotter from "./components/Fotter";
