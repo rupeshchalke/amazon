@@ -1,8 +1,12 @@
 .custom-card{
   width: 100%;
 max-width: 250px;
+transition: transform 0.2s;
 }
 
+.custom-card:hover{
+transform: scale(0.9);
+}
 .custom-card img{
   max-width: 100%;
   width: 250px;
@@ -10,3 +14,11 @@ max-width: 250px;
   object-fit: cover;
   border-radius: 20px;
 }
+
+.card-cuisine, .name{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+

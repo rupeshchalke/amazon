@@ -68,3 +68,17 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# imorts and exports\
+Two types which we are going to use 
+1) Default import/exports
+2) named imports/exports
+3) React Hooks : useState,useEffect
+
+#useEffect
+there are two arugments first is callback function and second is dependency array
+#case 1 : empty dependancy array : useEffect is called only once after inital render
+#case 2 : no dependency array : useEffect is called after every render
+#case 3 : dependency array with dependencies : useEffect is called after dependencies are changed
+
+
