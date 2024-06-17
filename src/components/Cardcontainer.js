@@ -1,44 +1,35 @@
 import Restaurantcard from "./Restaurantcard";
-import { restaurantList } from "../const/config";
 import { useState, useEffect } from "react";
 
 const Cardcontainer = () => {
-  const [restaurantData,setRestaurantData] = useState(restaurantList[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
 const[count,setCount] = useState(0)
+const[restaurantData,setRestaurantData] = useState([]);
 
 const getRestaurants = async() =>{
-  // const data = await fetch("https://media-assets.swiggy.com/dweb/js/vendor.c0e883a97d3e22e.js");
-  // const json = await data.json();
-  console.log("json");
+  const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.07480&lng=72.88560&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+  const json = await data.json();
+  console.log("json",json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+  setRestaurantData(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
 }
   
 useEffect(()=>{
   getRestaurants();
-  console.log("useEffect is called");
-},[count, restaurantData]);
+},[]);
 
 console.log("component is rendered");
 
-const filterRestaurants = () =>{
-   const restaurants = restaurantData.filter((restaurant) =>{
-    return(
-    restaurant?.info?.avgRating>=4.5
-    )
-   } )
-   setRestaurantData(restaurants);
-}
 
   return (
-    <>
-    <button className="bg-danger p-2 px-2" onClick={filterRestaurants}>Top Rated Restaurants</button>
-    <h1>Count is {count}</h1>
-    <button onClick={()=>setCount(count+1)}>Increment</button>
+     <div>
+      <div className="container my-3">
+        <input type="text" className="custom-input" placeholder="Enter name of restaurant"/>
+        <button className="btn btn-sm btn-light">🔍</button>
+      </div>
       <div className="container d-flex flex-wrap gap-4">
-      {restaurantData.map((restaurant) => {
-      {/* {restaurants.map((restaurant) => { */}
+       {restaurantData.map((restaurant) => {
         return (
-          <Restaurantcard
-          key = {restaurant?.info?.id}
+        <Restaurantcard
+               key = {restaurant?.info?.id}
             // imgUrl={IMG_URL + restaurant?.info?.cloudinaryImageId}
             // title={restaurant?.info?.name}
             // starRating={restaurant?.info?.avgRating}
@@ -50,7 +41,8 @@ const filterRestaurants = () =>{
           );
         })}
       </div>
-    </>
+
+    </div>
     );
   };
   

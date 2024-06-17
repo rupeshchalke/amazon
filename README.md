@@ -76,7 +76,7 @@ Two types which we are going to use
 3) React Hooks : useState,useEffect
 
 #useEffect
-there are two arugments first is callback function and second is dependency array
+there are two arugments first is callback function (compulsary) and second is dependency array (optional)
 #case 1 : empty dependancy array : useEffect is called only once after inital render
 #case 2 : no dependency array : useEffect is called after every render
 #case 3 : dependency array with dependencies : useEffect is called after dependencies are changed

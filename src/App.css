@@ -21,4 +21,9 @@ transform: scale(0.9);
   text-overflow: ellipsis;
 }
 
-
+.custom-input{
+  width: 100%;
+  max-width: 500px;
+  padding: 10px;
+  border-radius: 25px;
+}
