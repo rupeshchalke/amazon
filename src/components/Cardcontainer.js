@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 const Cardcontainer = () => {
 const[count,setCount] = useState(0)
 const[restaurantData,setRestaurantData] = useState([]);
-const[searchText,setsearchText] = useState("")
+const[searchtext,setSearchtext] = useState("");
 
 const getRestaurants = async() =>{
   const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.07480&lng=72.88560&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
@@ -13,10 +13,18 @@ const getRestaurants = async() =>{
   setRestaurantData(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
 }
 
-const handlesearchText = () =>{
-  
+const handleSearchText = (event) =>{
+  console.log("function is called",searchtext)
+  setSearchtext(event.target.value)
 }
   
+const filterData = () =>{
+  const filterdData = restaurantData.filter((restaurant)=>{
+    return restaurant?.info?.name.toLowerCase().includes(searchtext.toLowerCase())
+  })
+  setRestaurantData(filterdData);
+}
+
 useEffect(()=>{
   getRestaurants();
 },[]);
@@ -30,9 +38,9 @@ console.log("component is rendered");
         <input type="text" 
         className="custom-input" 
         placeholder="Enter name of restaurant"
-        value=""
-        onChange={handlesearchText}/>
-        <button className="btn btn-sm btn-light">🔍</button>
+        value={searchtext}
+        onChange={handleSearchText}/>
+        <button className="btn btn-light" onClick={filterData}>🔍</button>
       </div>
       <div className="container d-flex flex-wrap gap-4">
        {restaurantData.map((restaurant) => {

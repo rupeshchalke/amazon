@@ -3,8 +3,17 @@ import Body from "./Body";
 import About from "./About";
 import Contact from "./Contact";
 import Cart from "./Cart";
-const appRouter = createBrowserRouter([
+import App from "../App";
+import ErrorPage from "./ErrorPage";
+import Menu from "./Menu";
 
+const AppRouter = createBrowserRouter([
+
+{
+  path:"/",
+  element:<App/>,
+  errorElement:<ErrorPage/>,
+  children:[
     {
       path: "/about",
       element: <About/>,
@@ -20,7 +29,15 @@ const appRouter = createBrowserRouter([
       {
         path: "",
         element: <Body/>,
-      },
+      },  
+      {
+        path: "menu",
+        element: <Menu/>,
+      }, 
+  ]
+
+}    
+
   ]);
 
-  export default appRouter
+  export default AppRouter;

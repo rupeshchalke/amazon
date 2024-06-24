@@ -1,9 +1,12 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import "./App.css";
 // import logo from "./assets/images/cook.png"
 import Header from "./components/Header";
-import Body from "./components/Body";
+// import Body from "./components/Body";
+// import { Outlet } from "react-router-dom";
 import Fotter from "./components/Fotter";
+import { Outlet, RouterProvider } from 'react-router-dom';
+// import AppRouter from './components/appRouter';
 
 // const Header = () =>{
 //   return(
@@ -114,7 +117,8 @@ const App = () => {
   return(
     <>
       <Header/>
-       <Body/>
+      <Outlet/>
+      {/* <RouterProvider router={AppRouter} /> */}
        <Fotter/>
     </>
   );

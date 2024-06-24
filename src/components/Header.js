@@ -1,4 +1,5 @@
 import Logo from "../assets/images/cook.png"
+import { Link } from "react-router-dom";
 
 const Header = () =>{
     return(
@@ -16,13 +17,16 @@ const Header = () =>{
             <a className="nav-link" href="#">Home🏡</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">About us🧨</a>
+            {/* <a className="nav-link" href="/about">About us🧨</a> */}
+            <Link to ="/about" className="nav-link">About us🧨</Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">Contact us📞</a>
+            {/* <a className="nav-link" href="/contact">Contact us📞</a> */}
+            <Link to ="/contact" className="nav-link">Contact us📞</Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">Cart🛒</a>
+            {/* <a className="nav-link" href="/cart">Cart🛒</a> */}
+            <Link to ="/cart" className="nav-link">Cart🛒</Link>
           </li>
         </ul>
       </div>
