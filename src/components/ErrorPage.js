@@ -4,10 +4,11 @@ const ErrorPage=()=>{
     const errorObject = useRouteError()
     console.log("errorobject",errorObject)
     return(
-        <div>
-            <h1 >status:{errorObject.status}</h1>
-            <h1 >statusText:{errorObject.statusText}</h1>
-            <h1>Description</h1>
+        <div className="d-flex justify-content-center align-item-center">
+             Oops Something  Went Wrong🌋🌋.<br/>
+            status:{errorObject.status}<br/>
+            statusText:{errorObject.statusText}<br/>
+            Description:{errorObject.error.message}
         </div>
     )
 }
