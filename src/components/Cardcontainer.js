@@ -82,17 +82,18 @@ if(loading){
 if(isFailed){
   return(
     <div>
-<img src="https://media.istockphoto.com/id/1311367104/vector/404-page-not-found-banner-template.jpg?s=612x612&w=0&k=20&c=2o5WdgneLw6S2Bc5NalxJByoKMRnkd1w5O-7UnL5wBs=" className="center"></img>  
+<img src="https://www.ecommerce-nation.com/wp-content/uploads/2018/10/404-error.jpg" className="center"></img>  
   </div>
   )
 }
 
   return (
+    <div>
      <div className="container">
-      <div className="d-flex justify between">
-      <div className="container my-3">
+      <div className="d-flex justify-content-between align-items-center">
+      <div className=" d-flex my-3 w-50">
         <input type="text" 
-        className="custom-input" 
+        className="custom-input p-2 " 
         placeholder="Enter name of restaurant"
         value={searchtext}
         onChange={handleSearchText}/>
@@ -107,7 +108,7 @@ if(isFailed){
       </div>
 
       <div className="container d-flex flex-wrap gap-4">
-       {restaurantData.length!==0 ? restaurantData.map((restaurant) => {
+       {(restaurantData.length!==0) ? restaurantData.map((restaurant) => {
         return (
         <Restaurantcard
                key = {restaurant?.info?.id}
@@ -120,12 +121,13 @@ if(isFailed){
             {...restaurant?.info}
             />
           );
-        }) : <img src="https://st.depositphotos.com/1006899/2650/i/950/depositphotos_26505551-stock-photo-error-metaphor.jpg"></img>
-      }
+
+        }) : <img src="https://st.depositphotos.com/1006899/2650/i/950/depositphotos_26505551-stock-photo-error-metaphor.jpg"></img>}
         </div>
-      
-    </div>
-    );
-  };
+  </div>
+
+  </div>
+      );
+    };
   
-export default Cardcontainer;
+export default Cardcontainer
