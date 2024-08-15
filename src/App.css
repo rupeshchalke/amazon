@@ -52,3 +52,9 @@ background-color:rgb(239 237 237);
   top: 50%;
   transform: translate(-50%, -50%);
 }
+
+.menu_container{
+  width:100%;
+  max-width:750px;
+  margin:auto;
+}

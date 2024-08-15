@@ -1,14 +1,14 @@
 // const Restaurantcard = ({imgUrl, title, starRating, deliveryTime, cuisines, location}) => {
   // imgUrl, title, starRating, deliveryTime, cuisines, location
 import { IMG_URL } from "../const/config";
+import { Link } from "react-router-dom";
 
-const Restaurantcard = ({cloudinaryImageId, name, avgRating, sla, cuisines, areaName}) => {
+const Restaurantcard = ({cloudinaryImageId, name, avgRating, sla, cuisines, areaName, id}) => {
+
     return(
-      <div className="custom-card">
+      <Link to={`/menu/${id}`} className="custom-card text-decoration-none text-dark">
         <div className="mb-2">
           <img 
-        //  src={imgUrl}
-        //  src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/e0839ff574213e6f35b3899ebf1fc597"
          src={IMG_URL + cloudinaryImageId}
         />
         </div>
@@ -21,7 +21,7 @@ const Restaurantcard = ({cloudinaryImageId, name, avgRating, sla, cuisines, area
         <div className="text-secondary card-cuisine ">{cuisines.join(", ")}</div>
         <div>{areaName}</div>
         </div>
-      </div>
+      </Link>
     );
   };
 export default Restaurantcard;

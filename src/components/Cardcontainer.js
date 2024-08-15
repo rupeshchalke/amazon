@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 
 const Cardcontainer = () => {
-const [count,setCount] = useState(0)
 const [restaurantData,setRestaurantData] = useState([]);
 const [loading, setLoading] = useState(true)
 const [restaurantCollection, setRestaurantCollection] = useState([]);
@@ -109,6 +108,7 @@ if(isFailed){
 
       <div className="container d-flex flex-wrap gap-4">
        {(restaurantData.length!==0) ? restaurantData.map((restaurant) => {
+
         return (
         <Restaurantcard
                key = {restaurant?.info?.id}
@@ -123,7 +123,7 @@ if(isFailed){
           );
 
         }) : <img src="https://st.depositphotos.com/1006899/2650/i/950/depositphotos_26505551-stock-photo-error-metaphor.jpg"></img>}
-        </div>
+      </div>
   </div>
 
   </div>
