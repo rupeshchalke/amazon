@@ -9,8 +9,8 @@ const Body=()=>{
       <div className='text-center'>this is body</div>
       <Carousel/>
       <div className='d-flex justify-content-between'>
-        <Filters/>
-        <Searchbar/>
+        {/* <Filters/> */}
+        {/* <Searchbar/> */}
       </div>
         <Cardcontainer/>
         </>

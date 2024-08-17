@@ -1,6 +1,9 @@
 import Restaurantcard from "./Restaurantcard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
+import useRestaurant from "../hooks/useRestaurant";
+import Searchbar from "./Searchbar";
+import Filter from "./Filter";
 
 const Cardcontainer = () => {
 const [restaurantData,setRestaurantData] = useState([]);
@@ -8,20 +11,22 @@ const [loading, setLoading] = useState(true)
 const [restaurantCollection, setRestaurantCollection] = useState([]);
 const [searchtext,setSearchtext] = useState("");
 const [isFailed, setIsFailed] = useState(false)
+const resObject = useRestaurant();
+console.log("resObject",resObject);
 console.log("restaurantList",restaurantData);
 
-const handleSearchText = (event) =>{
-  console.log("function is called",searchtext)
-  setSearchtext(event.target.value)
-}
+// const handleSearchText = (event) =>{
+//   console.log("function is called",searchtext)
+//   setSearchtext(event.target.value)
+// }
   
-const filterData = () =>{
-  const filterdData = restaurantCollection.filter((restaurant)=>{
-    return restaurant?.info?.name.toLowerCase().includes(searchtext.toLowerCase())
-  })
-  console.log("filterData",filterData)
-  setRestaurantData(filterdData);
-}
+// const filterData = () =>{
+//   const filterdData = restaurantCollection.filter((restaurant)=>{
+//     return restaurant?.info?.name.toLowerCase().includes(searchtext.toLowerCase())
+//   })
+//   console.log("filterData",filterData)
+//   setRestaurantData(filterdData);
+// }
 
 const handleDelivery = () =>{
   const filterdData = restaurantCollection.filter((restaurant)=>{
@@ -49,36 +54,36 @@ setRestaurantData(restaurantCollection)
   }
 
 
-useEffect(()=>{
-  const getRestaurants = async() =>{
-    try{
-    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.07480&lng=72.88560&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
-    const json = await data.json();
-    setLoading(false);
-    console.log("json",json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    setRestaurantData(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    setRestaurantCollection(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-  }
-  catch(err){
-    setLoading(false)
-    setIsFailed(true)
-    console.log("Something Went Wrong",err)
-  }
-}
+// useEffect(()=>{
+//   const getRestaurants = async() =>{
+//     try{
+//     const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.07480&lng=72.88560&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+//     const json = await data.json();
+//     setLoading(false);
+//     console.log("json",json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+//     setRestaurantData(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+//     setRestaurantCollection(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+//   }
+//   catch(err){
+//     setLoading(false)
+//     setIsFailed(true)
+//     console.log("Something Went Wrong",err)
+//   }
+// }
 
-  getRestaurants();
-},[]);
+//   getRestaurants();
+// },[]);
 
 console.log("component is rendered");
 
-if(loading){
+if(resObject?.loading){
   return(
   <div className="container d-flex flex-wrap gap-4">
   <Shimmer/>
   </div>)
 }
 
-if(isFailed){
+if(resObject?.failed){
   return(
     <div>
 <img src="https://www.ecommerce-nation.com/wp-content/uploads/2018/10/404-error.jpg" className="center"></img>  
@@ -86,28 +91,16 @@ if(isFailed){
   )
 }
 
+  // const data = useRestaurant()
   return (
     <div>
-     <div className="container">
-      <div className="d-flex justify-content-between align-items-center">
-      <div className=" d-flex my-3 w-50">
-        <input type="text" 
-        className="custom-input p-2 " 
-        placeholder="Enter name of restaurant"
-        value={searchtext}
-        onChange={handleSearchText}/>
-        <button className="btn btn-light pt-2" onClick={filterData}>🔍</button>
+      <div className="container d-flex justify-content-between align-items-center">
+      <Searchbar collection={resObject?.masterData}  updater={resObject?.updater}/>
+      <Filter collection={resObject?.masterData}   updater={resObject?.updater}/>
       </div>
-        <div className="d-flex gap-3 h-25">
-        <button className="btn btn-sm btn-primary" onClick={handleDelivery}>Fast Delivery</button>
-        <button className="btn btn-sm btn-success" onClick={handleVeg}>Pure Veg</button>
-        <button className="btn btn-sm btn-danger" onClick={handleRating}>Top rated</button>
-        <button className="btn btn-sm btn-dark" onClick={reset}>Show all</button>
-      </div>
-      </div>
-
+      
       <div className="container d-flex flex-wrap gap-4">
-       {(restaurantData.length!==0) ? restaurantData.map((restaurant) => {
+       {(resObject?.resData.length!==0) ? resObject?.resData.map((restaurant) => {
 
         return (
         <Restaurantcard
@@ -121,10 +114,7 @@ if(isFailed){
             {...restaurant?.info}
             />
           );
-
-        }) : <img src="https://st.depositphotos.com/1006899/2650/i/950/depositphotos_26505551-stock-photo-error-metaphor.jpg"></img>}
-      </div>
-  </div>
+         }) : <img src="https://st.depositphotos.com/1006899/2650/i/950/depositphotos_26505551-stock-photo-error-metaphor.jpg"></img>}</div>
 
   </div>
       );
