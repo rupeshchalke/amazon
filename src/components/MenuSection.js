@@ -5,10 +5,10 @@ const MenuSection = ({name, costForTwo, isVeg, ratingCount, avgRating, descripti
 <div className="d-flex justify-content-betwwen align-items-center">
 
     <div>
-<p>{isVeg ? "🟢" : "🔴"}</p>
+<p>{isVeg ? <i class="fa-solid fa-leaf"></i> : <i class="fa-solid fa-egg"></i>}</p>
 <h6>{name}</h6>
 <h6>Rs. {costForTwo}</h6>
-{avgRating && <p className="text-success">⭐{avgRating}<span className="text-secondary">{ratingCount}</span></p>}
+{avgRating && <p className="text-success"><i class="fa-solid fa-star-half-stroke"></i>{avgRating}<span className="text-secondary">{ratingCount}</span></p>}
 <p className="text-secondary">{description}</p>
   </div>
 

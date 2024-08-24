@@ -110,10 +110,10 @@ import { Outlet, RouterProvider } from 'react-router-dom';
 //       </div>
 //     </div>  
 //   </div>
-//   )
+//   )s
 // }
-
 const App = () => {
+
   return(
     <>
       <Header/>
@@ -124,6 +124,4 @@ const App = () => {
   );
 }
     
-
-
 export default App;

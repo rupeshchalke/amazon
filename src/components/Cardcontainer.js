@@ -4,8 +4,10 @@ import Shimmer from "./Shimmer";
 import useRestaurant from "../hooks/useRestaurant";
 import Searchbar from "./Searchbar";
 import Filter from "./Filter";
+import useOnline from "../hooks/useOnline";
 
 const Cardcontainer = () => {
+const isOnline = useOnline();
 const [restaurantData,setRestaurantData] = useState([]);
 const [loading, setLoading] = useState(true)
 const [restaurantCollection, setRestaurantCollection] = useState([]);
@@ -76,6 +78,10 @@ setRestaurantData(restaurantCollection)
 
 console.log("component is rendered");
 
+if(!isOnline){
+  return <h1 className="text-danger center">Seems your connection is offline</h1>
+}
+
 if(resObject?.loading){
   return(
   <div className="container d-flex flex-wrap gap-4">
@@ -97,6 +103,12 @@ if(resObject?.failed){
       <div className="container d-flex justify-content-between align-items-center">
       <Searchbar collection={resObject?.masterData}  updater={resObject?.updater}/>
       <Filter collection={resObject?.masterData}   updater={resObject?.updater}/>
+      {/* <div className="d-flex gap-3 h-25">
+      <button className="btn btn-sm btn-primary" onClick={handleDelivery}>Fast Delivery</button>
+      <button className="btn btn-sm btn-success" onClick={handleVeg}>Pure Veg</button>
+      <button className="btn btn-sm btn-danger" onClick={handleRating}>Top rated</button>
+      <button className="btn btn-sm btn-dark" onClick={reset}>Show all</button>
+    </div> */}
       </div>
       
       <div className="container d-flex flex-wrap gap-4">

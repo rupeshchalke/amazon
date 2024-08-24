@@ -13,6 +13,7 @@ transform: scale(0.9);
   height: 200px;
   object-fit: cover;
   border-radius: 20px;
+  box-shadow: 4px 4px 8px black;
 }
 
 .card-cuisine, .name{
@@ -26,6 +27,7 @@ transform: scale(0.9);
   max-width: 500px;
   padding: 10px;
   border-radius: 25px;
+  box-shadow: 2px 2px 2px black;
 }
 
 .shimmerLine{
@@ -57,9 +59,33 @@ background-color:rgb(239 237 237);
   width:100%;
   max-width:750px;
   margin:auto;
+  border-style: double;
+
 }
 
-.info_container{
-  border:1px solid grey;
-  border-radius:25px;
+.mix {
+  border-style: dotted dashed solid double;
+  border-radius: 20px;
+  border-width: 5px;
+  background-color:blanchedalmond;
 }
+
+
+.dm-serif-text-regular {
+  font-family: "DM Serif Text", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.out{
+  background-color: orange;
+}
+
+.icon{
+  font-size: 24px;
+}
+
+.navbar{
+  box-shadow: 2px 2px 5px black;
+}
+

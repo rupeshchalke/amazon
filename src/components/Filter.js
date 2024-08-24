@@ -30,8 +30,6 @@ import { useState } from "react";
     }
 
 
-
-
     return(
       <div className="d-flex gap-3 h-25">
       <button className="btn btn-sm btn-primary" onClick={handleDelivery}>Fast Delivery</button>

@@ -81,4 +81,27 @@ there are two arugments first is callback function (compulsary) and second is de
 #case 2 : no dependency array : useEffect is called after every render
 #case 3 : dependency array with dependencies : useEffect is called after dependencies are changed
 
+#useState :It is react hook to define and update state variables=> javascript function
 
+1) structure : const [name, method(optional)] = useState(initialvalue)
+
+#useEffect : It is react hook to handle sideEffects
+
+ structure : useEffect(callback function, dependency array(optional))
+
+three cases : 
+1) empty dependency array ([]) : useEffect is called only once after initial render
+2) no dependency array () :  useEffect is called after initial render and after every successive render
+3) dependency array with dependencies ([state1, state2]) :useEffect is called after initial render and after every change in either of dependencies
+
+
+#Lazy loading/chunking/on demand loading/code splitting/dynamic bundling
+#Lazy loading/chunking/on demand loading/code splitting/dynamic bundling
+
+
+#Redux steps
+1) Installing libraries
+2) Create store
+3) Provide store
+4) Create Slice
+5) Configure store

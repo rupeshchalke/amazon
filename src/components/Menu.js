@@ -4,6 +4,8 @@ import Resinfo from "./Resinfo";
 import Shimmer from "./Shimmer";
 import MenuSection from "./MenuSection";
 import useMenu from "../hooks/useMenu";
+import NormalMenu from "./NormalMenu";
+import NestedMenu from "./NestedMenu";
 
 const Menu = () =>{
     // const params = useParams();
@@ -12,6 +14,7 @@ const Menu = () =>{
     // const [loading, setLoading] = useState(true);
     const menuList = useMenu(id);
     console.log("custom hook data",menuList);
+    const [activeIndex, setActiveIndex] = useState(0);
 
     // const menuList = useMenu();
 //     useEffect(()=>{
@@ -70,9 +73,19 @@ const Menu = () =>{
     } = menuList[2]?.card?.card?.info;
     const {slaString, lastMileTravelString} = sla;
     const {enrichedText} = expectationNotifiers[0]
+    const showDetails = (val)=>{
+        if(activeIndex===val){
+          setActiveIndex(-1)
+        }
+        else
+        {
+          setActiveIndex(val);
+        }
+      }
 
     return(
-        <div className="menu_container">
+
+        <div className="menu_container p-4">
 
             <Resinfo
             name={name}
@@ -87,83 +100,53 @@ const Menu = () =>{
             />
             
             <div className="p-3">
-                {normalMenu.map((normalCategory)=>{
+                {normalMenu.map((normalCategory, index)=>{
                         return(
-                            <>
-                            <h5 key={normalCategory?.card?.card?.ittle}>{normalCategory?.card?.card?.title}</h5>
-
-                            {normalCategory?.card?.card?.itemCards.map((dish)=>{
-                                return(
-                                    <>
-                                    <MenuSection
-                                    name={dish?.card?.info?.name}
-                                    costForTwo={dish?.card?.info?.defaultPrice / 100 || dish?.card?.info?.price / 100}
-                                    isVeg={dish?.card?.info?.isVeg}
-                                    ratingCount={dish?.card?.info?.ratings?.aggregatedRating?.ratingCount}
-                                    avgRating={dish?.card?.info?.ratings?.aggregatedRating?.rating}
-                                    description={dish?.card?.info?.description}
-                                    ImageUrl={dish?.card?.info?.imageId}
-                                    /> 
-                                    <hr/>
-                                    </>  
-                                )
-                            })}
-
-                            {/* <MenuSection
-                             name={normalCategory?.card?.card?.itemCards[0]?.card?.info?.name}
-                             costForTwo={normalCategory?.card?.card?.itemCards[0]?.card?.info?.defaultPrice/100}
-                             isVeg={normalCategory?.card?.card?.itemCards[0]?.card?.info?.isVeg}
-                             ratingCount={normalCategory?.card?.card?.itemCards[0]?.card?.info?.ratings?.aggregatedRating?.ratingCount}
-                             avgRating={normalCategory?.card?.card?.itemCards[0]?.card?.info?.ratings?.aggregatedRating?.rating}
-                             description={normalCategory?.card?.card?.itemCards[0]?.card?.info?.description}
-                             ImageUrl={normalCategory?.card?.card?.itemCards[0]?.card?.info?.imageId}
-                             /> */}
-                             </>
-                        )
-                    })
-                }
+                            <NormalMenu normalCollection={normalCategory} isActive={activeIndex===index}
+                            toggleFunction={()=>showDetails(index)}/>
+                        );
+                    })}
             </div>
 
             <div>
-                {
-                    nestedMenu.map((category)=>{
+                {nestedMenu.map((category)=>{
                         return(
-                            <div>
-                                <h4>{category?.card?.card?.title}</h4>
-                                {
-                                    category?.card?.card?.categories.map((subCategory)=>{
-                                        return(
-                                            <>
-                                            <h5>{subCategory?.title}</h5>
-                                            {
-                                                subCategory?.itemCards.map((dish)=>{
-                                                    return(
-                                                        <>
-                                                        <MenuSection
-                                                        name={dish?.card?.info?.name}
-                                                        costForTwo={dish?.card?.info?.defaultPrice / 100 || dish?.card?.info?.price / 100}
-                                                        isVeg={dish?.card?.info?.isVeg}
-                                                        ratingCount={dish?.card?.info?.ratings?.aggregatedRating?.ratingCount}
-                                                        avgRating={dish?.card?.info?.ratings?.aggregatedRating?.rating}
-                                                        description={dish?.card?.info?.description}
-                                                        ImageUrl={dish?.card?.info?.imageId}
-                                                        /> 
-                                                        <hr/>
-                                                        </> 
-                                                    )
-                                                })
-                                            }
-                                            </>
-                                        )
-                                    })
-                                }
-                            </div>
-                        )
-                    })
-                }
+                            <NestedMenu collection={category}/>
+                            // <div>
+                            //     <h4>{category?.card?.card?.title}</h4>
+                            //     {
+                            //         category?.card?.card?.categories.map((subCategory)=>{
+                            //             return(
+                            //                 <>
+                            //                 <h5>{subCategory?.title}</h5>
+                            //                 {
+                            //                     subCategory?.itemCards.map((dish)=>{
+                            //                         return(
+                            //                             <>
+                            //                             <MenuSection
+                            //                             name={dish?.card?.info?.name}
+                            //                             costForTwo={dish?.card?.info?.defaultPrice / 100 || dish?.card?.info?.price / 100}
+                            //                             isVeg={dish?.card?.info?.isVeg}
+                            //                             ratingCount={dish?.card?.info?.ratings?.aggregatedRating?.ratingCount}
+                            //                             avgRating={dish?.card?.info?.ratings?.aggregatedRating?.rating}
+                            //                             description={dish?.card?.info?.description}
+                            //                             ImageUrl={dish?.card?.info?.imageId}
+                            //                             /> 
+                            //                             <hr/>
+                            //                             </> 
+                            //                         )
+                            //                     })
+                            //                 }
+                            //             </>
+                            //             )
+                            //         })
+                            //     }
+                            // </div>
+                          );
+                    })}
             </div>
         </div>
     )
 }
 
-export default Menu;
+export default Menu

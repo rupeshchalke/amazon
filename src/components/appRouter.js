@@ -6,8 +6,11 @@ import Cart from "./Cart";
 import App from "../App";
 import ErrorPage from "./ErrorPage";
 import Menu from "./Menu";
+import { lazy, Suspense } from "react";
+import Shimmer from "./Shimmer";
+const Instamart = lazy(()=>import("./Instamart"))
 
-const AppRouter = createBrowserRouter([
+const appRouter = createBrowserRouter([
 
 {
   path:"/",
@@ -34,10 +37,16 @@ const AppRouter = createBrowserRouter([
         path: "/menu/:id",
         element: <Menu/>,
       }, 
+      {
+        path: "/instamart",
+        element:<Suspense fallback={(<Shimmer/>)}>
+                 <Instamart/>
+               </Suspense> 
+      }
   ]
 
 }    
 
   ]);
 
-  export default AppRouter;
+  export default appRouter;
