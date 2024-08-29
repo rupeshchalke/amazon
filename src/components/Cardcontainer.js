@@ -1,5 +1,5 @@
 import Restaurantcard from "./Restaurantcard";
-import { useState, useEffect } from "react";
+import { useState, useEffect} from "react";
 import Shimmer from "./Shimmer";
 import useRestaurant from "../hooks/useRestaurant";
 import Searchbar from "./Searchbar";
@@ -30,37 +30,37 @@ console.log("restaurantList",restaurantData);
 //   setRestaurantData(filterdData);
 // }
 
-const handleDelivery = () =>{
-  const filterdData = restaurantCollection.filter((restaurant)=>{
-    return restaurant?.info?.sla?.deliveryTime <=30
-  })
-  setRestaurantData(filterdData);
-}
+// const handleDelivery = () =>{
+//   const filterdData = restaurantCollection.filter((restaurant)=>{
+//     return restaurant?.info?.sla?.deliveryTime <=30
+//   })
+//   setRestaurantData(filterdData);
+// }
 
-const handleVeg = () =>{
-  const filterdData = restaurantCollection.filter((restaurant)=>{
-    return restaurant?.info?.veg
-  })
-  setRestaurantData(filterdData);
-}
+// const handleVeg = () =>{
+//   const filterdData = restaurantCollection.filter((restaurant)=>{
+//     return restaurant?.info?.veg
+//   })
+//   setRestaurantData(filterdData);
+// }
 
-const handleRating = () =>{
-  const filterdData = restaurantCollection.filter((restaurant)=>{
-    return restaurant?.info?.avgRating >=4.5
-  })
-  setRestaurantData(filterdData);
-}
+// const handleRating = () =>{
+//   const filterdData = restaurantCollection.filter((restaurant)=>{
+//     return restaurant?.info?.avgRating >=4.5
+//   })
+//   setRestaurantData(filterdData);
+// }
 
-const reset = () =>{
-setRestaurantData(restaurantCollection)
-  }
+// const reset = () =>{
+// setRestaurantData(restaurantCollection)
+//   }
 
 
 // useEffect(()=>{
 //   const getRestaurants = async() =>{
 //     try{
-//     const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.07480&lng=72.88560&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
-//     const json = await data.json();
+//     const response = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.07480&lng=72.88560&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+//     const json = await response.json();
 //     setLoading(false);
 //     console.log("json",json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
 //     setRestaurantData(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
@@ -102,7 +102,8 @@ if(resObject?.failed){
     <div>
       <div className="container d-flex justify-content-between align-items-center">
       <Searchbar collection={resObject?.masterData}  updater={resObject?.updater}/>
-      <Filter collection={resObject?.masterData}   updater={resObject?.updater}/>
+      <Filter masterData={resObject?.masterData}  updater={resObject?.updater}/>
+
       {/* <div className="d-flex gap-3 h-25">
       <button className="btn btn-sm btn-primary" onClick={handleDelivery}>Fast Delivery</button>
       <button className="btn btn-sm btn-success" onClick={handleVeg}>Pure Veg</button>

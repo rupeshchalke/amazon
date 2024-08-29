@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import useOnline from "../hooks/useOnline";
 import { UserContext } from "../utils/UserContext"
 
-
 const Header = () =>{
   const isOnline = useOnline();
   console.log("online status", isOnline);

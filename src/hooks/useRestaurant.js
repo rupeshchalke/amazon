@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
 import { RES_URL } from "../const/config";
+import { useEffect, useState } from "react";
 
 
 
@@ -9,6 +9,7 @@ const useRestaurant = () =>{
   const [restaurantCollection, setRestaurantCollection] = useState([])
   const [loading, setLoading] = useState(true)
   const [isFailed, setIsFailed] = useState(false)
+
   useEffect(()=>{
     const getRestaurants = async() =>{
       try{

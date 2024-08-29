@@ -2,7 +2,6 @@
   // imgUrl, title, starRating, deliveryTime, cuisines, location
 import { IMG_URL } from "../const/config";
 import { Link } from "react-router-dom";
-import { HostUrl } from "../constants/restaurants";
 
 const Restaurantcard = ({cloudinaryImageId, name, avgRating, sla, cuisines, areaName, id}) => {
 

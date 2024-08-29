@@ -1,32 +1,28 @@
-import { useState } from "react";
+  const Filter = ({masterData, updater}) =>{
 
-  const Filter = ({collection, updater}) =>{
-    const [restaurantData, setRestaurantData] = useState([]);
-    const [restaurantCollection, setRestaurantCollection] = useState([]);
-
-  const handleDelivery = (time) =>{
-    const filterdData = restaurantCollection.filter((restaurant)=>{
+  const handleDelivery = () =>{
+    const filterdData = masterData.filter((restaurant)=>{
       return restaurant?.info?.sla?.deliveryTime <=30
     })
-    setRestaurantData(filterdData);
+    updater(filterdData);
   }
   
-  const handleVeg = (green) =>{
-    const filterdData = restaurantCollection.filter((restaurant)=>{
+  const handleVeg = () =>{
+    const filterdData = masterData.filter((restaurant)=>{
       return restaurant?.info?.veg
     })
-    setRestaurantData(filterdData);
+    updater(filterdData);
   }
   
-  const handleRating = (rate) =>{
-    const filterdData = restaurantCollection.filter((restaurant)=>{
+  const handleRating = () =>{
+    const filterdData = masterData.filter((restaurant)=>{
       return restaurant?.info?.avgRating >=4.5
     })
-    setRestaurantData(filterdData);
+    updater(filterdData);
   }
   
   const reset = () =>{
-  updater(collection)
+  updater(masterData)
     }
 
 
