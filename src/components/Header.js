@@ -1,4 +1,4 @@
-import Logo from "../assets/images/cook.png"
+import Logo from "../assets/images/cook.png";
 import { Link } from "react-router-dom";
 import useOnline from "../hooks/useOnline";
 import { UserContext } from "../utils/UserContext"

@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Resinfo from "./Resinfo";
 import Shimmer from "./Shimmer";
-import MenuSection from "./MenuSection";
+// import MenuSection from "./MenuSection";
 import useMenu from "../hooks/useMenu";
 import NormalMenu from "./NormalMenu";
 import NestedMenu from "./NestedMenu";
@@ -72,7 +72,8 @@ const Menu = () =>{
         expectationNotifiers 
     } = menuList[2]?.card?.card?.info;
     const {slaString, lastMileTravelString} = sla;
-    const {enrichedText} = expectationNotifiers[0]
+    const {enrichedText} = expectationNotifiers != null ? expectationNotifiers[0] : "";
+
     const showDetails = (val)=>{
         if(activeIndex===val){
           setActiveIndex(-1)
